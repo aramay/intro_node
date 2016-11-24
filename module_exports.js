@@ -1,5 +1,13 @@
 var PI = Math.PI;
 
-exports.area = function (r) {
-    return PI * r * r;
+module.exports = function (r) {
+    return {
+        area: function () {
+
+            return PI * r * r;
+        }
+    };
 };
+
+
+// var circle = require('./module_exports.js');
