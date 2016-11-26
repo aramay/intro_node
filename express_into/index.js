@@ -4,9 +4,12 @@ var app = express();
 
 //call this function for http GET request for this path '/'
 app.get('/', function (req, res) {
+    res.send("hello, world!");
 
-    res.send("hello, world");
+});
 
+app.get('/yo', function (req, res) {
+    res.send("yo !!");
 });
 
 // var server = app.listen(3000);
