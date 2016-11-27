@@ -30,10 +30,23 @@ app.get('/', function (req, res) {
         // '<a href="/"' +user.username+' user.name.full + '<br>';
     });
     // res.send(JSON.stringify(users));
-    res.send(JSON.stringify(buffer));
+    res.send(buffer);
 
 });
 
+app.get(/big.*/, function (req, res, next) {
+
+    console.log("big user");
+
+    next();
+});
+
+app.get('/:username', function (req, res) {
+
+    var username = req.params.username;
+    console.log("username ", username);
+    res.send(username);
+});
 
 
 app.get('/yo', function (req, res) {
