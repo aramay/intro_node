@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "consolidate": "^0.14.5",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
