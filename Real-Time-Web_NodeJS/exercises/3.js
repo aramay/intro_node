@@ -16,7 +16,7 @@ if (args.help || !args.file) {
 }
 // var name = process.argv[2]
 
-var hello = require('./helloworld2.js')
+var hello = require('./helloworld3.js')
 
 // var contents = hello.say(args.file) -> this handles synchronous code
 

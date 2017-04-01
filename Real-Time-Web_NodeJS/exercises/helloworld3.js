@@ -2,26 +2,38 @@ function readTheFile (filename) {
 //   var contents = fs.readFileSync(filename)
 //   return fs.readFile(filename, cb)
 
-//different implementation 
+// different implementation
 
-   var sq = ASQ()
+  return ASQ(function (done) {
+    var stream = fs.createReadStream(filename)
 
-   fs.readFile(filename, sq.errfcb() )
+    var contents = ''
 
-   return sq
-}
+    //pipe into a different process
+    stream.pipe(fs.createWriteStream(filename + 'backup'))
+    
+    // listen for events
+    stream.on('data', function (chunks) {
+      console.log('data')
+      contents += chunks
+    })
 
-function displayMesg(done, contents){
-   setTimeout(function() {
+    stream.on('end', function () {
       done(contents)
-   }, 1000);
+    })
+  })
 }
 
-function say(filename){
-   return readTheFile(filename)
+function displayMesg (done, contents) {
+  setTimeout(function () {
+    done(contents)
+  }, 1000)
+}
+
+function say (filename) {
+  return readTheFile(filename)
       .then(displayMesg)
 }
-
 
 var fs = require('fs')
 
