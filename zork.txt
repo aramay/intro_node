@@ -1,1 +1,0 @@
-buffer object is a reference to a memory space outside of the V8 engine, but you will learn practical methods to access it, modify it, and convert it to standard Javascript objects that can be used by your code.
