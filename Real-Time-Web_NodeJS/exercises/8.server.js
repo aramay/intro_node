@@ -10,12 +10,33 @@ function handleHTTP (req, res) {
       res.writeHead(403)
       res.end()
     }
-  }
-  else {
+  }  else {
     res.writeHead(403)
     res.end()
   }
 }
+
+function handleIO(socket){
+
+  
+  function serverDisconnect(){
+    console.log("client disconnected")
+
+    clearInterval(intrv)//clear interval
+  }
+
+  console.log("client connected")
+
+  //setup interval to send message every second
+  var intrv = setInterval(function(){
+
+    socket.emit("hello", Math.random())
+  }, 1000)
+
+  socket.on("disconnect", serverDisconnect)
+
+}
+
 
 var http = require('http'),
   httpserv = http.createServer(handleHTTP),
@@ -31,6 +52,19 @@ require('asynquence-contrib')
 
 httpserv.listen(port, host)
 
-var io = require('socket.io')
 // hijack existing http connection , and listen for socket.io connection
-io.listen(httpserv)
+var io = require('socket.io').listen(httpserv)
+
+io.on('connection', handleIO)
+
+// configure socket.io
+io.configure(function(){
+	io.enable("browser client minification"); // send minified client
+	io.enable("browser client etag"); // apply etag caching logic based on version number
+	io.set("log level", 1); // reduce logging
+	io.set("transports", [
+		"websocket",
+		"xhr-polling",
+		"jsonp-polling"
+	]);
+});
