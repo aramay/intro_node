@@ -16,7 +16,15 @@ if (args.help || !args.file) {
 
 var hello = require('./helloworld.js')
 
-var contents = hello.say(args.file)
-console.log(contents.toString())
+// var contents = hello.say(args.file) -> this handles synchronous code
+
+hello.say(args.file, function(err, contents){
+   if (err) {
+      console.log("ERROR:" + err)
+   }
+   else{
+      console.log(contents.toString())
+   }
+})
 
 // process.stdout.write("stdout ->")
