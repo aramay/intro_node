@@ -8,7 +8,14 @@
 <body>
 <h1>8.html</h1>
 
-<p id="cont"></p>
+<div id="container">
+   <p id="mesg1"></p>
+   <div id="mesg"></div>
+
+   <input id="typeit" type="text" value="">
+   <input type="button" id="sendit" value="send message">
+   
+</div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -25,8 +32,34 @@ socket.on("disconnect", function(){
 })
 
 socket.on("hello", function(num){
-   document.getElementById("cont").innerHTML = "socket updating.. " + num
+   document.getElementById("mesg1").innerHTML = "socket updating.. " + num
 })
+
+socket.on("messages", function(mesg){
+   console.log("message event fired")
+   document.getElementById("mesg").innerHTML += mesg + "<br/>"
+})
+
+var btn = document.getElementById("sendit")
+
+console.log(btn)
+
+btn.addEventListener("click", function(){
+   console.log("clicked")
+   var value = document.getElementById("typeit").value
+
+   console.log(value)
+
+   if (value) {
+      
+      socket.emit("typeit", value)
+
+      document.getElementById("mesg").innerHTML += value + "<br>"
+      document.getElementById("typeit").value = ""
+   }
+
+})
+
 
 </script>
 
