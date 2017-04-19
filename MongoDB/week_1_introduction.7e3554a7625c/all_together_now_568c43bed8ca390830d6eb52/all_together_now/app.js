@@ -16,6 +16,7 @@ MongoClient.connect('mongodb://localhost:27017/video', function(err, db) {
     app.get('/', function(req, res){
 
         db.collection('movies').find({}).toArray(function(err, docs) {
+            // var docs = 
             res.render('movies', { 'movies': docs } );
         });
 

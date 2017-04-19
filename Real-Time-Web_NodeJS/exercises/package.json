@@ -9,6 +9,11 @@
   "author": "aramay",
   "license": "MIT",
   "dependencies": {
-    "minimist": "^1.2.0"
+    "asynquence": "^0.10.0",
+    "asynquence-contrib": "^0.28.0",
+    "forever": "^0.15.3",
+    "minimist": "^1.2.0",
+    "node-static": "^0.7.9",
+    "socket.io": "^0.9.16"
   }
 }

@@ -1,25 +1,25 @@
-function readTheFile(filename) {
-	var sq = ASQ();
+function readTheFile (filename) {
+  var sq = ASQ()
 
-	fs.readFile( filename, sq.errfcb() );
+  fs.readFile(filename, sq.errfcb())
 
-	return sq;
+  return sq
 }
 
-function delayMsg(done,msg) {
-	setTimeout(function(){
-		done(msg);
-	},1000);
+function delayMsg (done, contents) {
+  setTimeout(function () {
+    done(contens)
+  }, 1000)
 }
 
-function say(filename) {
-	return readTheFile(filename)
-	.then(delayMsg);
+function say (filename) {
+  return readTheFile(filename)
+	.then(delayMsg)
 }
 
-var fs = require("fs");
+var fs = require('fs')
 
-var ASQ = require("asynquence");
-require("asynquence-contrib");
+var ASQ = require('asynquence')
+require('asynquence-contrib')
 
-module.exports.say = say;
+module.exports.say = say
